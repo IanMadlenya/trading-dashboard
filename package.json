@@ -1,0 +1,42 @@
+{
+  "name": "trading-dashboard",
+  "version": "0.0.1",
+  "description": "Trading Dashboard",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.8",
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.1.4",
+    "html-webpack-plugin": "^2.8.1",
+    "image-webpack-loader": "^1.6.3",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.4.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^3.1.2",
+    "ts-loader": "^0.8.0",
+    "typescript": "^1.8.2",
+    "typings": "^0.6.10",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "scripts": {
+    "postinstall": "typings install",
+    "dev": "NODE_ENV=development webpack-dev-server",
+    "build": "NODE_ENV=production webpack",
+    "tsc": "tsc --outDir ts-output",
+    "tsc:watch": "tsc --watch --outDir ts-output"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-beta.8",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "express": "^4.13.4",
+    "lodash": "^4.6.1",
+    "material-design-lite": "^1.1.1",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.5.15"
+  }
+}
