@@ -14,13 +14,13 @@
         <div class="mdl-grid">
         </div>
         <div>
-            <my-volume></my-volume>
+            <my-volume [dataResponse]="response"></my-volume>
         </div>
-        <div>
-            <ul *ngFor="#day of response">
-                <li>{{day.volume}}</li>
-            </ul>
-        </div>
+        <!--<div>-->
+            <!--<ul>-->
+                <!--<li *ngFor="#day of response">{{day.volume}}</li>-->
+            <!--</ul>-->
+        <!--</div>-->
     </main>
 </div>
 
