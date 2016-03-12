@@ -13,5 +13,14 @@
     <main class="mdl-layout__content">
         <div class="mdl-grid">
         </div>
+        <div>
+            <my-volume></my-volume>
+        </div>
+        <div>
+            <ul *ngFor="#day of response">
+                <li>{{day.volume}}</li>
+            </ul>
+        </div>
     </main>
 </div>
+
