@@ -1,4 +1,4 @@
-export interface Data {
+export interface StockData {
     adj_close: string,
     close: string,
     date: string,
