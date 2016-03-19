@@ -1,7 +1,4 @@
-hello
 
-<ul>
-    <li *ngFor="#day of dataResponse">
-        {{day.volume}}
-    </li>
-</ul>
+<div style="margin-left: 14px; z-index: 100; height=350px; width: 500px;">
+    <canvas vol-chart [dataResponse]="_data" height="350px" width="500px" style="border: 1px solid black;"></canvas>
+</div>
