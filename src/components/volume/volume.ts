@@ -10,5 +10,11 @@ import {ChartDirective} from './volume-charts.ts';
 export class VolumeComponent {
     _ref: ComponentRef;
     _data: Array<any>;
+    
+    //DIRECTIVES: CHART_DIRECTIVES
+    // options: Object;
+    // Template: <chart [options]="options"></chart>
+    
+    //Maybe use lifecycle hook to set data
 }
 

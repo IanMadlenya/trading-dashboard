@@ -16,18 +16,14 @@ import {CHART_DIRECTIVES} from 'angular2-highcharts';
     providers: [JSONP_PROVIDERS, StockInformationService]
 })
 export class AppShell {
-    response: Observable<Array<StockData>> = <StockData>[];
-    testResponse: {};
-    private _children:ComponentRef[] = [];
-
-
-
-    remove() {
-        this._children.forEach(cmp => cmp.dispose());
-        this._children = []; // not even necessary to get the components off the screen
-    }
-
+    // response: Observable<Array<StockData>> = <StockData>[];
     options: Object;
+    // private _children:ComponentRef[] = [];
+
+    // remove() {
+    //     this._children.forEach(cmp => cmp.dispose());
+    //     this._children = []; // not even necessary to get the components off the screen
+    // }
 
     constructor(private _stockInformationService: StockInformationService,
                 private _dcl: DynamicComponentLoader,
@@ -37,63 +33,51 @@ export class AppShell {
 
     requestData(symbol: string) {
         // clear old response
-        this.response.length = 0;
-        this.testResponse = {};
+        // this.response.length = 0;
+        // this.testResponse = {};
 
         this._stockInformationService.getData(symbol)
             .subscribe(
                 data => {
-                    console.log(data);
+                    // Format Data
+                    var parseData = []
 
-                    for (var i=0; i < data.query.results.quote.length; i++) {
-                        this.response.unshift(
-                            {
-                                adj_close: data.query.results.quote[i].Adj_Close,
-                                close: data.query.results.quote[i].Close,
-                                date: data.query.results.quote[i].Date,
-                                high: data.query.results.quote[i].High,
-                                low: data.query.results.quote[i].Low,
-                                open: data.query.results.quote[i].Open,
-                                symbol: data.query.results.quote[i].Symbol,
-                                volume: data.query.results.quote[i].Volume
-                            }
-                        );
+                    for (var i = 0; i < data.query.results.quote.length; i++) {
+                        var date = new Date(data.query.results.quote[i].Date).getTime();
+                        var volume = parseInt(data.query.results.quote[i].Volume);
+                        parseData.unshift([date, volume])
                     }
 
-
-                    // console.log(this.response.map(dayData => dayData.volume).splice(0, 7))
-                    var dataLength = this.response.length
-                    console.log(dataLength)
-
-                    console.log(this.response.map(dayData => dayData.date).splice(dataLength - 20, dataLength - 1))
-
-                    // Parse and test basic data
-                    this.testResponse = {}
-                    this.testResponse = {
-                        labels: this.response.map(dayData => dayData.date).splice(dataLength - 20, dataLength - 1),
-                        datasets: [
-                            {
-                                label: "Volume Dataset",
-                                fillColor: "rgba(220,220,220,0.2)",
-                                strokeColor: "rgba(220,220,220,1)",
-                                pointColor: "rgba(220,220,220,1)",
-                                pointStrokeColor: "#000",
-                                pointHighlightFill: "#000",
-                                pointHighlightStroke: "rgba(220,220,220,1)",
-                                data: this.response.map(dayData => dayData.volume).splice(0, 20)
-                            }
-                        ]
+                    // Set Chart Options
+                    this.options = {
+                        title: {text: "Volume for " + data.query.results.quote[0].Symbol},
+                        chart: {
+                            alignTicks: false
+                        },
+                        rangeSelector: {
+                            selected: 1
+                        },
+                        series: [{
+                            type: 'column',
+                            name: 'AAPL',
+                            data: parseData
+                        }],
+                        legend: {
+                            enabled: false
+                        }
                     }
 
-                    this._dcl.loadIntoLocation(VolumeComponent, this._er, 'dynamicChart')
-                        .then((ref: ComponentRef) => {
-                            this.remove();
-
-                            ref.instance._ref = ref;
-                            ref.instance._data = this.testResponse;
-                            
-                            this._children.push(ref);
-                        });
+           
+                    // Chart.js ver
+                    // this._dcl.loadIntoLocation(VolumeComponent, this._er, 'dynamicChart')
+                    //     .then((ref: ComponentRef) => {
+                    //         this.remove();
+                    //
+                    //         ref.instance._ref = ref;
+                    //         ref.instance._data = this.testResponse;
+                    //
+                    //         this._children.push(ref);
+                    //     });
                 },
                 error => console.log("Error: " + error)
             )

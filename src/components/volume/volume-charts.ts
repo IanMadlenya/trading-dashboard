@@ -7,6 +7,10 @@ export class ChartDirective {
     public data:any = {};
     private ctx:any = {};
     private barChart:any = {};
+    
+    // Maybe I can use this directive?
+    // Use @Input for the dataResponse
+    // Use constructor to create this chart with its options
 
     constructor(el: ElementRef, renderer: Renderer) {
         this.ctx = el.nativeElement.getContext("2d");

@@ -16,25 +16,11 @@
             <input type="text" #symbol>
             <button (click)="requestData(symbol.value);">Request</button>
         </div>
+        <!--<div>-->
+            <!--<div #dynamicChart style="margin-left: 14px; z-index: 100; height=250px; width: 400px;"></div>-->
+        <!--</div>-->
         <div>
-            <!--<template ngFor #child [ngForOf]="children">-->
-                <!--&lt;!&ndash;<div #dynamicChart></div>&ndash;&gt;-->
-                <!--<div [myVolume]="child" #dynamicChart></div>-->
-            <!--</template>-->
-
-            <!--<div style="margin-left: 14px; z-index: 100; height=250px; width: 400px;">-->
-                <!--<canvas id="myChart" vol-chart [dataResponse]="testResponse" height="250px" width="400px"></canvas>-->
-            <!--</div>-->
-
-            <div #dynamicChart style="margin-left: 14px; z-index: 100; height=250px; width: 400px;"></div>
-        </div>
-        <div>
-            <chart [options]="options"></chart>
+            <chart type="StockChart" [options]="options" style="height: 400px"></chart>
         </div>
     </main>
 </div>
-
-<!--<div #ref><ng-content></ng-content></div>-->
-<!--<span *ngIf="ref.childNodes.length == 0">-->
-              <!--Display this if ng-content is empty!-->
-           <!--</span>`-->
