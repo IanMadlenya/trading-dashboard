@@ -1,5 +1,6 @@
 ## Trading Dashboard with Angular2 + Webpack
 
+Discovery project into Angular 2 and Webpack using a trading dashboard as an example.
 
 ### Install
 
@@ -7,11 +8,3 @@
 - `npm install`
 - `typings install`
 - `npm run dev`
-
-
-### Must Read
-
-- [Block__Element--Modifier](https://css-tricks.com/bem-101/)
-- [Angular 2](https://angular.io/)
-- [Material Design Lite](http://getmdl.io/)
-- [Webpack](https://webpack.github.io/docs/)
