@@ -1,4 +1,4 @@
-import {Component, ComponentRef} from 'angular2/core';
+import {Component, ComponentRef, ViewChild, AfterViewInit} from 'angular2/core';
 import {ChartDirective} from './volume-charts.ts';
 
 @Component({
@@ -7,10 +7,18 @@ import {ChartDirective} from './volume-charts.ts';
     directives: [ChartDirective]
 })
 
-export class VolumeComponent {
+export class VolumeComponent implements AfterViewInit {
+    ngAfterViewInit():any {
+        // return undefined;
+    }
+
     _ref: ComponentRef;
     _data: Array<any>;
-    
+
+    @ViewChild('vol-chart');
+
+    private canvas;
+
     //DIRECTIVES: CHART_DIRECTIVES
     // options: Object;
     // Template: <chart [options]="options"></chart>
