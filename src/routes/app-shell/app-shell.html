@@ -16,9 +16,6 @@
             <input type="text" #symbol>
             <button (click)="requestData(symbol.value);">Request</button>
         </div>
-        <!--<div>-->
-            <!--<div #dynamicChart style="margin-left: 14px; z-index: 100; height=250px; width: 400px;"></div>-->
-        <!--</div>-->
         <div>
             <chart type="StockChart" [options]="options" style="height: 400px"></chart>
         </div>

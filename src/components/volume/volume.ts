@@ -1,28 +1,13 @@
-import {Component, ComponentRef, ViewChild, AfterViewInit} from 'angular2/core';
-import {ChartDirective} from './volume-charts.ts';
+import {Component, Input} from 'angular2/core';
+import {StockData} from '../../core/data';
+
 
 @Component({
     selector: 'my-volume',
-    template: require('./volume.html'),
-    directives: [ChartDirective]
+    template: require('./volume.html')
 })
 
-export class VolumeComponent implements AfterViewInit {
-    ngAfterViewInit():any {
-        // return undefined;
-    }
+export class VolumeComponent{
+    @Input() dataResponse: Array<StockData>;
 
-    _ref: ComponentRef;
-    _data: Array<any>;
-
-    @ViewChild('vol-chart');
-
-    private canvas;
-
-    //DIRECTIVES: CHART_DIRECTIVES
-    // options: Object;
-    // Template: <chart [options]="options"></chart>
-    
-    //Maybe use lifecycle hook to set data
 }
-

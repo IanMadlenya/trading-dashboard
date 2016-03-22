@@ -3,16 +3,14 @@ import './app-shell.scss';
 import {StockData} from '../../core/data.ts';
 import {VolumeComponent} from '../../components/volume/volume';
 import {StockInformationService} from '../../core/stock-information.service';
-import {ChartDirective} from '../../components/volume/volume-charts';
 import {JSONP_PROVIDERS}  from 'angular2/http';
 import {Observable}       from 'rxjs/Observable';
-
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 
 @Component({
     selector: 'app-shell',
     template: require('./app-shell.html'),
-    directives: [VolumeComponent, ChartDirective, CHART_DIRECTIVES],
+    directives: [VolumeComponent, CHART_DIRECTIVES],
     providers: [JSONP_PROVIDERS, StockInformationService]
 })
 export class AppShell {
@@ -20,10 +18,6 @@ export class AppShell {
     options: Object;
     // private _children:ComponentRef[] = [];
 
-    // remove() {
-    //     this._children.forEach(cmp => cmp.dispose());
-    //     this._children = []; // not even necessary to get the components off the screen
-    // }
 
     constructor(private _stockInformationService: StockInformationService,
                 private _dcl: DynamicComponentLoader,
@@ -32,9 +26,6 @@ export class AppShell {
 
 
     requestData(symbol: string) {
-        // clear old response
-        // this.response.length = 0;
-        // this.testResponse = {};
 
         this._stockInformationService.getData(symbol)
             .subscribe(
@@ -67,22 +58,8 @@ export class AppShell {
                         }
                     }
 
-           
-                    // Chart.js ver
-                    // this._dcl.loadIntoLocation(VolumeComponent, this._er, 'dynamicChart')
-                    //     .then((ref: ComponentRef) => {
-                    //         this.remove();
-                    //
-                    //         ref.instance._ref = ref;
-                    //         ref.instance._data = this.testResponse;
-                    //
-                    //         this._children.push(ref);
-                    //     });
                 },
                 error => console.log("Error: " + error)
             )
-        
-
     }  // requestData function end
 }
-
