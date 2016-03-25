@@ -19,11 +19,8 @@ var StockInformationService = (function () {
         var year = this.date.getFullYear();
         var month = this.date.getMonth() + 1;
         var day = this.date.getDate();
-        console.log(month);
         var startDate = [year - 1, month, day].join("-");
         var endDate = [year, month, day].join("-");
-        console.log(startDate);
-        console.log(endDate);
         var apiRootYahoo = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22";
         // let apiRoot = "http://marketdata.websol.barchart.com/getHistory.json";
         // var params = new URLSearchParams();
@@ -38,7 +35,6 @@ var StockInformationService = (function () {
         //            .get(apiRoot, { search: params })
         //            .map(request => request.results.json());
         var fullURL = apiRootYahoo + symbol + "%22%20and%20startDate%20%3D%20%22" + startDate + "%22%20and%20endDate%20%3D%20%22" + endDate + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSONP_CALLBACK";
-        console.log(fullURL);
         return this._jsonp
             .get(fullURL)
             .map(function (request) { return request.json(); });
