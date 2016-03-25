@@ -11,55 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("angular2/core");
 require('./app-shell.scss');
 var volume_1 = require('../../components/volume/volume');
-var stock_information_service_1 = require('../../core/stock-information.service');
-var http_1 = require('angular2/http');
-var angular2_highcharts_1 = require('angular2-highcharts');
 var AppShell = (function () {
-    // private _children:ComponentRef[] = [];
-    function AppShell(_stockInformationService, _dcl, _er) {
-        this._stockInformationService = _stockInformationService;
-        this._dcl = _dcl;
-        this._er = _er;
+    function AppShell() {
     }
-    AppShell.prototype.requestData = function (symbol) {
-        var _this = this;
-        this._stockInformationService.getData(symbol)
-            .subscribe(function (data) {
-            // Format Data
-            var parseData = [];
-            for (var i = 0; i < data.query.results.quote.length; i++) {
-                var date = new Date(data.query.results.quote[i].Date).getTime();
-                var volume = parseInt(data.query.results.quote[i].Volume);
-                parseData.unshift([date, volume]);
-            }
-            // Set Chart Options
-            _this.options = {
-                title: { text: "Volume for " + data.query.results.quote[0].Symbol },
-                chart: {
-                    alignTicks: false
-                },
-                rangeSelector: {
-                    selected: 1
-                },
-                series: [{
-                        type: 'column',
-                        name: 'AAPL',
-                        data: parseData
-                    }],
-                legend: {
-                    enabled: false
-                }
-            };
-        }, function (error) { return console.log("Error: " + error); });
-    }; // requestData function end
     AppShell = __decorate([
         core_1.Component({
             selector: 'app-shell',
             template: require('./app-shell.html'),
-            directives: [volume_1.VolumeComponent, angular2_highcharts_1.CHART_DIRECTIVES],
-            providers: [http_1.JSONP_PROVIDERS, stock_information_service_1.StockInformationService]
+            directives: [volume_1.VolumeComponent]
         }), 
-        __metadata('design:paramtypes', [stock_information_service_1.StockInformationService, core_1.DynamicComponentLoader, core_1.ElementRef])
+        __metadata('design:paramtypes', [])
     ], AppShell);
     return AppShell;
 }());

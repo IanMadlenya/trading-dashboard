@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class StockInformationService {
+  date: Object;
   constructor(private _jsonp: Jsonp) {}
 
   getData (symbol: string) {

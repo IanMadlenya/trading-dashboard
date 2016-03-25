@@ -11,13 +11,6 @@
         </div>
     </header>
     <main class="mdl-layout__content">
-        <div class="mdl-grid">
-            <label>Symbol:</label>
-            <input type="text" #symbol>
-            <button (click)="requestData(symbol.value);">Request</button>
-        </div>
-        <div>
-            <chart type="StockChart" [options]="options" style="height: 400px"></chart>
-        </div>
+      <my-volume></my-volume>
     </main>
 </div>
