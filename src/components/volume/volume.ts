@@ -27,6 +27,8 @@ export class VolumeComponent{
             .subscribe(
                 data => {
                     // Format Data
+                    console.log(data);
+                    console.log("-------")
                     var parseData = []
 
                     for (var i = 0; i < data.query.results.quote.length; i++) {
@@ -34,6 +36,8 @@ export class VolumeComponent{
                         var volume = parseInt(data.query.results.quote[i].Volume);
                         parseData.unshift([date, volume])
                     }
+
+                    console.log(parseData)
 
                     // Set Chart Options
                     this.options = {

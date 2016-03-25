@@ -21,12 +21,15 @@ var VolumeComponent = (function () {
         this._stockInformationService.getData(symbol)
             .subscribe(function (data) {
             // Format Data
+            console.log(data);
+            console.log("-------");
             var parseData = [];
             for (var i = 0; i < data.query.results.quote.length; i++) {
                 var date = new Date(data.query.results.quote[i].Date).getTime();
                 var volume = parseInt(data.query.results.quote[i].Volume);
                 parseData.unshift([date, volume]);
             }
+            console.log(parseData);
             // Set Chart Options
             _this.options = {
                 title: { text: "Volume for " + data.query.results.quote[0].Symbol },
