@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, ComponentRef} from 'angular2/core';
 import {StockInformationService} from '../../core/stock-information.service';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {JSONP_PROVIDERS} from 'angular2/http';
@@ -15,6 +15,7 @@ import {Observable} from 'rxjs/Observable';
 
 export class VolumeComponent{
     // @Input() dataResponse: Array<StockData>;
+    _ref: ComponentRef;
     options: Object;
 
     constructor(private _stockInformationService: StockInformationService) {}

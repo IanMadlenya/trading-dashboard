@@ -12,15 +12,24 @@ var core_1 = require("angular2/core");
 require('./app-shell.scss');
 var volume_1 = require('../../components/volume/volume');
 var AppShell = (function () {
-    function AppShell() {
+    // response: Observable<Array<StockData>> = <StockData>[];
+    // private _children:ComponentRef[] = [];
+    function AppShell(_dcl, _er) {
+        this._dcl = _dcl;
+        this._er = _er;
     }
+    AppShell.prototype.addComponent = function () {
+        this._dcl.loadIntoLocation(volume_1.VolumeComponent, this._er, 'componentContainer').then(function (ref) {
+            ref.instance._ref = ref;
+        });
+    };
     AppShell = __decorate([
         core_1.Component({
             selector: 'app-shell',
             template: require('./app-shell.html'),
             directives: [volume_1.VolumeComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.ElementRef])
     ], AppShell);
     return AppShell;
 }());

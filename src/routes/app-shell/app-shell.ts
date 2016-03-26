@@ -11,7 +11,12 @@ export class AppShell {
     // response: Observable<Array<StockData>> = <StockData>[];
 
     // private _children:ComponentRef[] = [];
+    constructor(private _dcl: DynamicComponentLoader, private _er: ElementRef) {}
 
-
+    addComponent() {
+      this._dcl.loadIntoLocation(VolumeComponent, this._er, 'componentContainer').then((ref) => {
+        ref.instance._ref = ref;
+      });
+    }
 
 }
