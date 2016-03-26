@@ -54,6 +54,24 @@ export class VolumeComponent{
                         }
                     }
 
+                    // this.selectChart.highcharts('StockChart', {
+                    //   title: {text: "Volume for " + data.query.results.quote[0].Symbol},
+                    //   chart: {
+                    //       alignTicks: false
+                    //   },
+                    //   rangeSelector: {
+                    //       selected: 1
+                    //   },
+                    //   series: [{
+                    //       type: 'column',
+                    //       name: 'AAPL',
+                    //       data: parseData
+                    //   }],
+                    //   legend: {
+                    //       enabled: false
+                    //   }
+                    // })
+
                 },
                 error => console.log("Error: " + error)
             )
