@@ -12,16 +12,40 @@ var core_1 = require("angular2/core");
 require('./app-shell.scss');
 var volume_1 = require('../../components/volume/volume');
 var AppShell = (function () {
-    // response: Observable<Array<StockData>> = <StockData>[];
     // private _children:ComponentRef[] = [];
     function AppShell(_dcl, _er) {
         this._dcl = _dcl;
         this._er = _er;
+        this.limitComponent = 0;
     }
     AppShell.prototype.addComponent = function () {
-        this._dcl.loadIntoLocation(volume_1.VolumeComponent, this._er, 'componentContainer').then(function (ref) {
-            ref.instance._ref = ref;
-        });
+        var _this = this;
+        if (this.limitComponent < 2) {
+            this._dcl.loadIntoLocation(volume_1.VolumeComponent, this._er, 'componentContainer').then(function (ref) {
+                ref.instance._ref = ref;
+                ref.instance._limitComponent = _this.limitComponent++;
+                ref.instance.lowerIndex.subscribe(function (v) {
+                    _this.limitComponent--;
+                });
+            });
+        }
+        if (this.idx < 4) {
+            this._dcl.loadIntoLocation(DynamicCmp, this._e, 'location').then(function (ref) {
+                ref.instance._ref = ref;
+                ref.instance._idx = _this.idx++;
+                ref.instance.lowerIndex.subscribe(function (v) {
+                    _this.idx--;
+                    console.log("subtracted");
+                });
+            });
+            console.log("added");
+        }
+    };
+    AppShell.prototype.lowerCompCount = function (bool) {
+        console.log(bool);
+        if (bool == true) {
+            this.limitComponent--;
+        }
     };
     AppShell = __decorate([
         core_1.Component({

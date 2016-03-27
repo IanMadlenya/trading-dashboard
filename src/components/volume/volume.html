@@ -3,6 +3,7 @@
       <label>Symbol:</label>
       <input type="text" #symbol>
       <button (click)="requestData(symbol.value);">Request</button>
+      <button (click)="removeComponent()">Remove</button>
   </div>
   <div>
       <chart type="StockChart" [options]="options" style="height: 400px"></chart>
