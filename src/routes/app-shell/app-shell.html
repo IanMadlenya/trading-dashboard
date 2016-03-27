@@ -8,9 +8,12 @@
             </span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
+            <div class="mdl-layout-spacer">
+              <button (click)="addComponent()">Add Component</button>
+            </div>
         </div>
     </header>
     <main class="mdl-layout__content">
-      <my-volume></my-volume>
+      <div #componentContainer></div>
     </main>
 </div>

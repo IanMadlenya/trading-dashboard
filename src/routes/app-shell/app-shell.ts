@@ -8,10 +8,40 @@ import {VolumeComponent} from '../../components/volume/volume';
     directives: [VolumeComponent]
 })
 export class AppShell {
-    // response: Observable<Array<StockData>> = <StockData>[];
+  limitComponent: number = 0;
 
-    // private _children:ComponentRef[] = [];
+  // private _children:ComponentRef[] = [];
+  constructor(private _dcl: DynamicComponentLoader, private _er: ElementRef) {}
 
+  addComponent() {
+    if (this.limitComponent < 2) {
+      this._dcl.loadIntoLocation(VolumeComponent, this._er, 'componentContainer').then((ref) => {
+        ref.instance._ref = ref;
+        ref.instance._limitComponent = this.limitComponent++;
+        ref.instance.lowerIndex.subscribe(v => {
+          this.limitComponent--;
+        });
+      });
+    }
 
+    if (this.idx < 4) {
+        this._dcl.loadIntoLocation(DynamicCmp, this._e, 'location').then((ref) => {
+          ref.instance._ref = ref;
+          ref.instance._idx = this.idx++;
+          ref.instance.lowerIndex.subscribe(v => {
+            this.idx--;
+            console.log("subtracted");
+          });
+        });
 
+        console.log("added")
+    }
+  }
+
+  lowerCompCount(bool) {
+    console.log(bool);
+    if (bool == true) {
+      this.limitComponent--;
+    }
+  }
 }

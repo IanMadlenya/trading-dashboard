@@ -1,3 +1,25 @@
+body {
+  overflow-y: hidden;
+}
+
 img {
     width: 100%;
+}
+
+.container {
+  height: 100%;
+  width: 49%;
+  position: relative;
+  border: 1px solid black;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+
+// .highcharts-container{width:100% !important; height:100% !important; overflow: auto; display: block;}
+
+chart {
+  width: 49% !important;
+  height: calc(100% - 102px) !important;
+  position: relative;
 }

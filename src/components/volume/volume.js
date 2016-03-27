@@ -12,10 +12,16 @@ var core_1 = require('angular2/core');
 var stock_information_service_1 = require('../../core/stock-information.service');
 var angular2_highcharts_1 = require('angular2-highcharts');
 var http_1 = require('angular2/http');
+var Rx_1 = require('rxjs/Rx');
 var VolumeComponent = (function () {
     function VolumeComponent(_stockInformationService) {
         this._stockInformationService = _stockInformationService;
+        this.lowerIndex = new Rx_1.Subject();
     }
+    VolumeComponent.prototype.removeComponent = function () {
+        this.lowerIndex.next(true);
+        this._ref.dispose();
+    };
     VolumeComponent.prototype.requestData = function (symbol) {
         var _this = this;
         this._stockInformationService.getData(symbol)
@@ -45,6 +51,23 @@ var VolumeComponent = (function () {
                     enabled: false
                 }
             };
+            // this.selectChart.highcharts('StockChart', {
+            //   title: {text: "Volume for " + data.query.results.quote[0].Symbol},
+            //   chart: {
+            //       alignTicks: false
+            //   },
+            //   rangeSelector: {
+            //       selected: 1
+            //   },
+            //   series: [{
+            //       type: 'column',
+            //       name: 'AAPL',
+            //       data: parseData
+            //   }],
+            //   legend: {
+            //       enabled: false
+            //   }
+            // })
         }, function (error) { return console.log("Error: " + error); });
     }; // requestData function end
     VolumeComponent = __decorate([
